@@ -56,6 +56,13 @@ class AdsViewHolder(adapter: PostRecyclerAdapter, view: View) : BaseViewHolder(a
                     itemView.context.startActivity(intent)
                 }
             }
+
+            clearAds.setOnClickListener{
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    adapter.list.removeAt(adapterPosition)
+                    adapter.notifyItemRemoved(adapterPosition)
+                }
+            }
         }
     }
 
@@ -68,11 +75,7 @@ class AdsViewHolder(adapter: PostRecyclerAdapter, view: View) : BaseViewHolder(a
             countReply.text = post.reply?.count.toString()
             countComments.text = post.comment.count.toString()
 
-            if (post.like.isLiked) {
-                imageButtonLike.setImageResource(R.drawable.ic_favorite_24dp)
-            } else {
-                imageButtonLike.setImageResource(R.drawable.ic_favorite_border_24dp)
-            }
+            imageButtonLike.setImageResource(if (post.like.isLiked) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp)
 
             if (countLikes.text == "0") {
                 countLikes.visibility = View.INVISIBLE
@@ -81,7 +84,6 @@ class AdsViewHolder(adapter: PostRecyclerAdapter, view: View) : BaseViewHolder(a
             if (countComments.text == "0") {
                 countComments.visibility = View.INVISIBLE
             } else countComments.visibility = View.VISIBLE
-
 
             if (countReply.text == "0") {
                 countReply.visibility = View.INVISIBLE

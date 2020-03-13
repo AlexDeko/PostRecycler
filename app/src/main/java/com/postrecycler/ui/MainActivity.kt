@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val list = listOf(
+        val list: MutableList<Post> = mutableListOf(
             Post(
                 id = 4, author = "Красивые люди", postType = PostType.POST, text = "Мы скромные!",
                 date = "25.02.20", like = Like(0, false), comment = Comment(33, false),

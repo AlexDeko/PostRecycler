@@ -57,11 +57,7 @@ class PostViewHolder(adapter: PostRecyclerAdapter, view: View) : BaseViewHolder(
             countReply.text = post.reply?.count.toString()
             countComments.text = post.comment.count.toString()
 
-            if (post.like.isLiked) {
-                imageButtonLike.setImageResource(R.drawable.ic_favorite_24dp)
-            } else {
-                imageButtonLike.setImageResource(R.drawable.ic_favorite_border_24dp)
-            }
+            imageButtonLike.setImageResource(if (post.like.isLiked) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp)
 
             if (countLikes.text == "0") {
                 countLikes.visibility = View.INVISIBLE
